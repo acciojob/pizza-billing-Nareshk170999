@@ -5,26 +5,26 @@ public class Pizza {
     private int price;
     private Boolean isVeg;
     private String bill;
+
+    private  int totalPrice = 0;
+
     private int vegPizza = 300;
 
     private final int extraCheese = 80;
-    private final int extraToppings = 70;
+    private final int extraToppingsVeg = 70;
     private final int extraToppingsNonVeg = 120;
 
     private boolean isExtraCheseAdded;
     private boolean isExtraToppingsAdded;
     private boolean isTakeAway;
-    private boolean isbillGenerated; 
-
+    private boolean isbillGenerated;
 
     public Pizza(Boolean isVeg){
         this.isVeg = isVeg;
-        if(isVeg)
-        {
+        if(isVeg){
             price = 300;
-        }else
-        {
-            price=400;
+        }else{
+            price = 400;
         }
         totalPrice = price;
         isExtraCheseAdded = false;
@@ -32,6 +32,7 @@ public class Pizza {
         isTakeAway = false;
         isbillGenerated = false;
         bill = "";
+
     }
 
     public int getPrice(){
@@ -40,46 +41,48 @@ public class Pizza {
 
     public void addExtraCheese(){
         if(!isExtraCheseAdded){
-            totalPrice+=extraCheese;
-            isExtraCheseAdded=true;
+            totalPrice += extraCheese;
+            isExtraCheseAdded = true;
         }
+        // your code goes here
+
     }
 
     public void addExtraToppings(){
-         if(!isExtraToppingsAdded){
+        if(!isExtraToppingsAdded){
             if(isVeg){
-            totalPrice+=extraToppings;
+                totalPrice += extraToppingsVeg;
             }else{
-            totalPrice+=extraToppingsNonVeg;
+                totalPrice += extraToppingsNonVeg;
             }
-        isExtraToppingsAdded=true;
+          isExtraToppingsAdded = true;
         }
+
     }
 
     public void addTakeaway(){
         if(!isTakeAway){
-            totalPrice+=20;
-            isTakeAway=true;
+            totalPrice += 20;
+            isTakeAway = true;
+
         }
+
     }
 
     public String getBill(){
         if(!isbillGenerated) {
             bill += "Base Price Of The Pizza: " + price + "\n";
-            //new line
             if (isExtraCheseAdded) {
                 bill += "Extra Cheese Added: " + extraCheese + "\n";
             }
-            //new line
             if (isExtraToppingsAdded && isVeg) {
                 bill += "Extra Toppings Added: " + extraToppingsVeg + "\n";
-            } //new line
-            else if (isExtraToppingsAdded && !isVeg) {
+            } else if (isExtraToppingsAdded && !isVeg) {
                 bill += "Extra Toppings Added: " + extraToppingsNonVeg + "\n";
-            }//new line
+            }
             if (isTakeAway) {
                 bill += "Paperbag Added: " + 20 + "\n";
-            }//new line
+            }
             bill += "Total Price: " + totalPrice + "\n";
             isbillGenerated = true;
         }
